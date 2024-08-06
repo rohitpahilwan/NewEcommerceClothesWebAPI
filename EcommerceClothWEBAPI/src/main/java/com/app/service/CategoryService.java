@@ -11,4 +11,6 @@ public interface CategoryService {
 	public String updateCategory(Long id,Category category);
 	
 	public String deleteById(Long id);
+
+	public boolean findById(Long id);
 }

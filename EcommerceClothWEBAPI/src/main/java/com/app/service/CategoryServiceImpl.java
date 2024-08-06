@@ -52,5 +52,14 @@ public class CategoryServiceImpl implements CategoryService{
 		return "deleted";
 	}
 
+	@Override
+	public boolean findById(Long id) {
+		if(categoryRepo.findById(id).isPresent())
+		{
+			return true;
+		}
+		return false;
+	}
+
 
 }

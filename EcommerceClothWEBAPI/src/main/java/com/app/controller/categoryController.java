@@ -35,13 +35,17 @@ public class categoryController {
 	public ResponseEntity<ApiResponse> createCategory(@RequestBody Category category)
 	{
 			categoryService.createCategory(category);
- 			return new ResponseEntity<ApiResponse>(new ApiResponse(true, "Category has been updated"),HttpStatus.CREATED);  
+ 			return new ResponseEntity<ApiResponse>(new ApiResponse(true, "Category has been Created"),HttpStatus.CREATED);  
 	}
 
 @PutMapping("/updatecat/{id}")
-public String updateCategory(@PathVariable Long id,@RequestBody Category category)
+public ResponseEntity<ApiResponse>  updateCategory(@PathVariable Long id,@RequestBody Category category)
 {
-	return categoryService.updateCategory(id, category);
+	if(!categoryService.findById(id)) {
+		return new ResponseEntity<ApiResponse>(new ApiResponse(false,"Id Not Found"),HttpStatus.NOT_FOUND);
+	}
+	categoryService.updateCategory(id, category);
+	return new ResponseEntity<ApiResponse>(new ApiResponse(true,"Category has been Updated"),HttpStatus.OK);
 }
 	
 
