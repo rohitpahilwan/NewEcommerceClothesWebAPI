@@ -35,7 +35,7 @@ public class categoryController {
 	public ResponseEntity<ApiResponse> createCategory(@RequestBody Category category)
 	{
 			categoryService.createCategory(category);
- 			return new ResponseEntity<ApiResponse>(new ApiResponse(true, "Category has been updated"),HttpStatus.OK)
+ 			return new ResponseEntity<ApiResponse>(new ApiResponse(true, "Category has been updated"),HttpStatus.CREATED);  
 	}
 
 @PutMapping("/updatecat/{id}")
