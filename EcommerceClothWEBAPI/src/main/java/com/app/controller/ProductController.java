@@ -59,13 +59,16 @@ public class ProductController {
 	}
 	
 	 @PostMapping("/update/{productID}")
-	    public ResponseEntity<ApiResponse> updateProduct(@PathVariable("productID") Integer productID, @RequestBody @Valid ProductDTO productDto) {
-	        Optional<Category> optionalCategory = categoryService.readCategory(productDto.getCategoryId());
-	        if (!optionalCategory.isPresent()) {
-	            return new ResponseEntity<ApiResponse>(new ApiResponse(false, "category is invalid"), HttpStatus.CONFLICT);
-	        }
-	        Category category = optionalCategory.get();
-	        productService.updateProduct(productID, productDto, category);
-	        return new ResponseEntity<ApiResponse>(new ApiResponse(true, "Product has been updated"), HttpStatus.OK);
-	    }
-}
+	    public ResponseEntity<ApiResponse> updateProduct(@PathVariable("productID") Long Id, @RequestBody  ProductDTO productDto) 
+	 {
+		 Optional<Category> oprionalCategory=categoryRepo.findById(productDto.getCategoryId()); 
+		 if(!oprionalCategory.isPresent())
+		 {
+			 return new ResponseEntity<ApiResponse>(new ApiResponse(false, "Category Not present"),HttpStatus.NOT_FOUND);
+		 }
+//		 productService.updateProduct(Id, productDto);
+		 return new ResponseEntity<ApiResponse>(new ApiResponse(true, "UPDATED SUCCESSFULLY"),HttpStatus.OK);
+	 }
+	 
+	 }
+		 
