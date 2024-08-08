@@ -15,4 +15,7 @@ public interface ProductService {
 	public void updateProduct(Long id,ProductDTO productDto) throws Exception;
 
 	public boolean findById(Long id);
+
+	public void deleteProduct(Long id);
+
 }
